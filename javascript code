@@ -1,0 +1,27 @@
+document.getElementById('generate-btn').addEventListener('click', function(){
+    const textInput = document.getElementById('text-input').value;
+    const qrCodeContainer = document.getElementById('qr-code');
+    const qrcontainer = document.querySelector('.qr-container');
+
+    if (textInput.trim() === '') {
+        alert('Please enter some text to generate the QR Code.');
+        return;
+    }
+
+    // Clear previous QR code
+    qrCodeContainer.innerHTML = '';
+
+    // Create new QR image
+    const qrImage = document.createElement('img');
+    qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(textInput)}&size=250x250`;
+
+    qrCodeContainer.appendChild(qrImage);
+
+    // Show both containers
+    qrCodeContainer.style.display = 'block';
+    qrcontainer.style.display = 'flex';
+});
+
+function Noneshow() {
+    document.querySelector('.qr-container').style.display = "none";
+}
